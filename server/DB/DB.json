@@ -1,0 +1,168 @@
+{
+  "vaches": [
+    {
+      "id_vache": 1,
+      "date_entree": "2024-04-01",
+      "race": "Holstein",
+      "examens_sante": [
+        {
+          "date_examen": "2024-08-14",
+          "maladie": "test1"
+        },
+        {
+          "date_examen": "2024-08-11",
+          "maladie": "infaction"
+        },
+        {
+          "date_examen": "2024-07-10",
+          "maladie": "Recovered Infection"
+        }
+      ],
+      "vêlages": [
+        {
+          "date_vêlage": "2024-05-29",
+          "poids_vêlage_kg": 23
+        },
+        {
+          "date_vêlage": "2024-05-30",
+          "poids_vêlage_kg": 24
+        },
+        {
+          "date_vêlage": "2024-06-15",
+          "poids_vêlage_kg": 25
+        },
+        {
+          "date_vêlage": "2024-06-02",
+          "poids_vêlage_kg": 18
+        },
+        {
+          "date_vêlage": "2024-08-08",
+          "poids_vêlage_kg": 20
+        },
+        {
+          "date_vêlage": "2024-08-09",
+          "poids_vêlage_kg": 28
+        }
+      ],
+      "production_lait": [
+        {
+          "date_production": "2024-04-10",
+          "litres_lait": "15"
+        },
+        {
+          "date_production": "2024-04-13",
+          "litres_lait": "25"
+        },
+        {
+          "date_production": "2024-06-10",
+          "litres_lait": "15"
+        },
+        {
+          "date_production": "2024-07-10",
+          "litres_lait": "25.5"
+        }
+      ]
+    },
+    {
+      "id_vache": 2,
+      "date_entree": "2024-04-20",
+      "race": "Montbéliarde",
+      "examens_sante": [
+        {
+          "date_examen": "2024-04-21",
+          "maladie": "Aucune"
+        }
+      ],
+      "vêlages": [
+        {
+          "date_vêlage": "2024-08-08",
+          "poids_vêlage_kg": 28
+        },
+        {
+          "date_vêlage": "2024-08-08",
+          "poids_vêlage_kg": 28
+        }
+      ],
+      "production_lait": [
+        {
+          "date_production": "2024-04-22",
+          "litres_lait": 15
+        },
+        {
+          "date_production": "2024-04-23",
+          "litres_lait": 14
+        }
+      ]
+    },
+    {
+      "id_vache": 3,
+      "date_entree": "2024-04-18",
+      "race": "Holstein",
+      "examens_sante": [
+        {
+          "date_examen": "2024-04-19",
+          "maladie": "Aucune"
+        }
+      ],
+      "vêlages": [],
+      "production_lait": [
+        {
+          "date_production": "2024-04-18",
+          "litres_lait": 22
+        }
+      ]
+    },
+    {
+      "id_vache": 4,
+      "date_entree": "2024-03-21",
+      "race": "Montbéliarde",
+      "examens_sante": [
+        {
+          "date_examen": "2024-01-22",
+          "maladie": "Aucune"
+        }
+      ],
+      "vêlages": [],
+      "production_lait": [
+        {
+          "date_production": "2024-08-21",
+          "litres_lait": 19
+        }
+      ]
+    },
+    {
+      "id_vache": 5,
+      "date_entree": "2024-05-29",
+      "race": "Montbéliarde",
+      "examens_sante": [],
+      "vêlages": [],
+      "production_lait": []
+    },
+    {
+      "id_vache": 19,
+      "date_entree": "2024-05-10",
+      "race": "Boki",
+      "examens_sante": [],
+      "vêlages": [],
+      "production_lait": []
+    },
+    {
+      "id_vache": 7,
+      "date_entree": "2024-08-08",
+      "race": "Holstein",
+      "mother_id": 1,
+      "examens_sante": [],
+      "vêlages": [],
+      "production_lait": []
+    },
+    {
+      "id_vache": 8,
+      "date_entree": "2024-08-09",
+      "race": "Holstein",
+      "mother_id": 1,
+      "examens_sante": [],
+      "vêlages": [],
+      "production_lait": []
+    }
+  ]
+}
