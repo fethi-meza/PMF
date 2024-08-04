@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { Button, Flex, Icon, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Button, Flex, Icon, Table, Thead, Tbody, Tr, Th, Td, Box } from "@chakra-ui/react";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import AddNewProductionLait from "../Components/production_lait/addNewPRODctionLite";
@@ -49,7 +49,6 @@ const ProductionLait = () => {
   const openDelete = (id, date_production) => {
     setSelectedId(id);
     setIsDeleteOpen(true);
-    // Set the date_production to state for DeleteProductionLait
     setInitialValues({ date_production });
   };
 
@@ -67,9 +66,20 @@ const ProductionLait = () => {
 
   return (
     <div>
-      <h1>Welcome to Production Lait Page</h1>
+      <Box className="n" p={4}>
+        <Box textAlign="center">
+          <h1 style={{ fontSize: "2rem" }}>
+            <span style={{ color: "green" }}>Welcome</span>
+            <span style={{ color: "red" }}> To</span>
+            <span style={{ color: "white" }}> Production Lait Page</span>
+          </h1>
+        </Box>
+      </Box>
+
       <Flex mb={4}>
-        <Button colorScheme="green" mr={4} onClick={openForm} leftIcon={<Icon as={FaPlus} />}>Add New Production Lait</Button>
+        <Button colorScheme="green" mr={4} onClick={openForm} leftIcon={<Icon as={FaPlus} />}>
+          Add New Production Lait
+        </Button>
       </Flex>
       <AddNewProductionLait isOpen={isFormOpen} onClose={closeForm} id_vache={id_vache} onSave={fetchProductionLait} />
       <EditProductionLait isOpen={isEditOpen} onClose={closeEdit} initialValues={initialValues} onSave={updateProductionLait} id_vache={id_vache} />
@@ -90,9 +100,12 @@ const ProductionLait = () => {
               <Td>{production.date_production}</Td>
               <Td>{production.litres_lait}</Td>
               <Td>
-                <Button size="sm" colorScheme="blue" ml={2} onClick={() => openEdit(production)} leftIcon={<Icon as={FaEdit} />}>Edit</Button>
-                <Button size="sm" colorScheme="red" ml={2} onClick={() => openDelete(production.id, production.date_production)} leftIcon={<Icon as={FaTrash} />}>Delete</
-                Button>
+                <Button size="sm" colorScheme="blue" ml={2} onClick={() => openEdit(production)} leftIcon={<Icon as={FaEdit} />}>
+                  Edit
+                </Button>
+                <Button size="sm" colorScheme="red" ml={2} onClick={() => openDelete(production.id, production.date_production)} leftIcon={<Icon as={FaTrash} />}>
+                  Delete
+                </Button>
               </Td>
             </Tr>
           ))}

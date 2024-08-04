@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { Button, Flex, Icon, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Button, Flex, Icon, Table, Thead, Tbody, Tr, Th, Td, Box } from "@chakra-ui/react";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import AddNewVelage from "../Components/Valge/AddNewValge";
@@ -57,7 +57,15 @@ const Valge = () => {
 
   return (
     <div>
-      <h1>Vêlages</h1>
+      <Box className="n" p={4}>
+        <Box textAlign="center">
+          <h1 style={{ fontSize: "2rem" }}>
+            <span style={{ color: "green" }}>Welcome</span>
+            <span style={{ color: "red" }}> To</span>
+            <span style={{ color: "white" }}> Vêlages Page</span>
+          </h1>
+        </Box>
+      </Box>
       <Flex mb={4}>
         <Button colorScheme="green" mr={4} onClick={openForm} leftIcon={<Icon as={FaPlus} />}>Add New Vêlage</Button>
       </Flex>
@@ -67,6 +75,7 @@ const Valge = () => {
       <Table variant="simple">
         <Thead>
           <Tr>
+            <Th>ID</Th>
             <Th>Date Vêlage</Th>
             <Th>Poids Vêlage (kg)</Th>
             <Th>Actions</Th>
@@ -75,7 +84,8 @@ const Valge = () => {
         <Tbody>
           {velages.length > 0 ? (
             velages.map((velage) => (
-              <Tr key={velage.date_vêlage}>
+              <Tr key={velage.id || velage.date_vêlage}>
+                <Td>{velage.id}</Td> {/* Assuming 'id' is available */}
                 <Td>{velage.date_vêlage}</Td>
                 <Td>{velage.poids_vêlage_kg}</Td>
                 <Td>
@@ -86,7 +96,7 @@ const Valge = () => {
             ))
           ) : (
             <Tr>
-              <Td colSpan="3">No Vêlages Found</Td>
+              <Td colSpan="4">No Vêlages Found</Td>
             </Tr>
           )}
         </Tbody>

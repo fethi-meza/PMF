@@ -1,11 +1,25 @@
 import React, { useState } from "react";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, FormControl, FormLabel, Input, useToast } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  useToast,
+} from "@chakra-ui/react";
 import axios from "axios";
 
 const AddVache = ({ isOpen, onClose, onSave }) => {
   const [dateEntree, setDateEntree] = useState("");
-  const [race, setRace] = useState("");
-  const toast = useToast(); // Initialize useToast hook
+  const [race, setRace] = useState(""); // Use state for race
+  const toast = useToast();
 
   const handleSave = () => {
     const newVache = {
@@ -14,7 +28,7 @@ const AddVache = ({ isOpen, onClose, onSave }) => {
     };
 
     axios.post("http://localhost:4000/api/v1/vaches/addVach", newVache)
-      .then(response => {
+      .then((response) => {
         onSave(response.data);
         onClose();
         toast({
@@ -25,7 +39,7 @@ const AddVache = ({ isOpen, onClose, onSave }) => {
           isClosable: true,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error adding vache:", error);
         toast({
           title: "Error",
@@ -46,11 +60,21 @@ const AddVache = ({ isOpen, onClose, onSave }) => {
         <ModalBody>
           <FormControl>
             <FormLabel>Date Entree</FormLabel>
-            <Input type="date" value={dateEntree} onChange={(e) => setDateEntree(e.target.value)} />
+            <Input
+              type="date"
+              value={dateEntree}
+              onChange={(e) => setDateEntree(e.target.value)}
+            />
           </FormControl>
           <FormControl mt={4}>
             <FormLabel>Race</FormLabel>
-            <Input type="text" value={race} onChange={(e) => setRace(e.target.value)} />
+            <Select
+              value={race} // Correctly bind the Select value to state
+              onChange={(e) => setRace(e.target.value)} // Handle change
+            >
+              <option value="Holstein">Holstein</option>
+              <option value="Montbéliarde">Montbéliarde</option>
+            </Select>
           </FormControl>
         </ModalBody>
         <ModalFooter>
