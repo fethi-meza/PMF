@@ -7,9 +7,6 @@ const saveData = (data) => {
     fs.writeFileSync(path.join(__dirname, '../DB/DB.json'), JSON.stringify(data, null, 2));
 };
 
-
-
-
 // Get all vêlages for a vache
 const getAllVelages = (req, res) => {
   const id = parseInt(req.params.id);

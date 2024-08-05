@@ -74,7 +74,13 @@ Installation:
 
   
   API Endpoints
-    
+  vach CRUD operations (Create, Read, Update, Delete) 
+
+  Get_all_vaches :
+  http://localhost:3000/
+
+
+  
 
 
  

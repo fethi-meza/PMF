@@ -8,20 +8,20 @@ import EditVelage from "../Components/Valge/EditValge";
 import DeleteVelage from "../Components/Valge/DeleteValge";
 
 const Valge = () => {
-  const { id_vache } = useParams(); // Ensure this matches the route param name
+  const { id_vache } = useParams(); 
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [velages, setVelages] = useState([]);
   const [initialValues, setInitialValues] = useState({});
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedVelage, setSelectedVelage] = useState(null);
 
   const fetchVelages = useCallback(async () => {
-    if (!id_vache) return; // Exit if id_vache is not available
+    if (!id_vache) return;
 
     try {
       const response = await axios.get(`http://127.0.0.1:4000/api/v1/vaches/${id_vache}/getAllVelages`);
-      console.log("Fetched vêlages:", response.data); // Debugging line
+      console.log("Fetched vêlages:", response.data);
       setVelages(response.data);
     } catch (error) {
       console.error("Error fetching vêlages:", error);
@@ -35,15 +35,16 @@ const Valge = () => {
 
   const openForm = () => setIsFormOpen(true);
   const closeForm = () => setIsFormOpen(false);
+
   const openEdit = (velage) => {
     setInitialValues(velage);
     setIsEditOpen(true);
   };
   const closeEdit = () => setIsEditOpen(false);
-  const openDelete = (date_vêlage) => {
-    setSelectedId(date_vêlage);
+
+  const openDelete = (velage) => {
+    setSelectedVelage(velage);
     setIsDeleteOpen(true);
-    setInitialValues({ date_vêlage });
   };
   const closeDelete = () => setIsDeleteOpen(false);
 
@@ -53,6 +54,18 @@ const Valge = () => {
         velage.date_vêlage === updatedVelage.date_vêlage ? updatedVelage : velage
       )
     );
+  };
+
+  const deleteVelage = async () => {
+    try {
+      await axios.delete(`http://127.0.0.1:4000/api/v1/vaches/${id_vache}/deleteVelage/${selectedVelage.date_vêlage}`);
+      setVelages((prevVelages) =>
+        prevVelages.filter((velage) => velage.date_vêlage !== selectedVelage.date_vêlage)
+      );
+      closeDelete();
+    } catch (error) {
+      console.error("Error deleting vêlage:", error);
+    }
   };
 
   return (
@@ -71,7 +84,13 @@ const Valge = () => {
       </Flex>
       <AddNewVelage isOpen={isFormOpen} onClose={closeForm} id_vache={id_vache} onSave={fetchVelages} />
       <EditVelage isOpen={isEditOpen} onClose={closeEdit} initialValues={initialValues} onSave={updateVelage} id_vache={id_vache} />
-      <DeleteVelage isOpen={isDeleteOpen} onClose={closeDelete} id_vache={id_vache} date_vêlage={initialValues.date_vêlage} />
+      <DeleteVelage 
+        isOpen={isDeleteOpen} 
+        onClose={closeDelete} 
+        id_vache={id_vache} 
+        date_vêlage={selectedVelage?.date_vêlage} 
+        onDelete={deleteVelage} 
+      />
       <Table variant="simple">
         <Thead>
           <Tr>
@@ -84,13 +103,13 @@ const Valge = () => {
         <Tbody>
           {velages.length > 0 ? (
             velages.map((velage) => (
-              <Tr key={velage.id || velage.date_vêlage}>
-                <Td>{velage.id}</Td> {/* Assuming 'id' is available */}
+              <Tr key={velage.id}>
+                <Td>{velage.id}</Td>
                 <Td>{velage.date_vêlage}</Td>
                 <Td>{velage.poids_vêlage_kg}</Td>
                 <Td>
                   <Button size="sm" colorScheme="blue" ml={2} onClick={() => openEdit(velage)} leftIcon={<Icon as={FaEdit} />}>Edit</Button>
-                  <Button size="sm" colorScheme="red" ml={2} onClick={() => openDelete(velage.date_vêlage)} leftIcon={<Icon as={FaTrash} />}>Delete</Button>
+                  <Button size="sm" colorScheme="red" ml={2} onClick={() => openDelete(velage)} leftIcon={<Icon as={FaTrash} />}>Delete</Button>
                 </Td>
               </Tr>
             ))

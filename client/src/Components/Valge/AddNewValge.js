@@ -16,29 +16,30 @@ import {
   useToast
 } from "@chakra-ui/react";
 
-const AddNewValge = ({ isOpen, onClose }) => {
+const AddNewValge = ({ isOpen, onClose, id_vache, onSave }) => {
   const toast = useToast();
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Add New Valge Entry</ModalHeader>
+        <ModalHeader>Add New Vêlage Entry</ModalHeader>
         <ModalCloseButton />
         <Formik
           initialValues={{ date_vêlage: "", poids_vêlage_kg: "" }}
           onSubmit={(values, actions) => {
             axios
               .post(
-                "http://127.0.0.1:4000/api/v1/valges/addValge",
-                values,
+                `http://127.0.0.1:4000/api/v1/vaches/${id_vache}/addVelage`, // Corrected endpoint
+                values
               )
               .then((response) => {
                 console.log("Post response:", response.data);
+                onSave(); // Call the onSave function to refresh the data
                 onClose(); // Close the modal after successful submission
                 toast({
                   title: "Success",
-                  description: "Valge data added successfully.",
+                  description: "Vêlage data added successfully.",
                   status: "success",
                   duration: 5000,
                   isClosable: true,
@@ -48,7 +49,7 @@ const AddNewValge = ({ isOpen, onClose }) => {
                 console.error("Error:", error); // Log any errors
                 toast({
                   title: "Error",
-                  description: "Failed to add valge data.",
+                  description: "Failed to add vêlage data.",
                   status: "error",
                   duration: 5000,
                   isClosable: true,
