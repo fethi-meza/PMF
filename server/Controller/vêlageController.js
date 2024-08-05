@@ -16,7 +16,7 @@ const getAllVelages = (req, res) => {
       console.log('Vache not found');
       return res.status(404).json({ message: 'Vache not found' });
   }
-  console.log('Vêlages found:', vache.vêlages);
+  //console.log('Vêlages found:', vache.vêlages);
   res.json(vache.vêlages);
 };
 

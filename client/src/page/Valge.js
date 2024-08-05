@@ -21,7 +21,7 @@ const Valge = () => {
 
     try {
       const response = await axios.get(`http://127.0.0.1:4000/api/v1/vaches/${id_vache}/getAllVelages`);
-      console.log("Fetched vêlages:", response.data);
+      //console.log("Fetched vêlages:", response.data);
       setVelages(response.data);
     } catch (error) {
       console.error("Error fetching vêlages:", error);
